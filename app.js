@@ -6,12 +6,15 @@ const sharp = require("sharp");
 const multer = require("multer");
 const Carousel = require("./module/Carousel");
 const Projects = require("./module/Projects");
-const { setHeaders } = require("./controller/middlewares/header");
+const { setHeaders } = require("./middlewares/header");
+const cors = require("cors")
 
 const app = express();
 
+app.use(cors());
 app.use(express.json())
 dotenv.config({ path: "./config/config.env" })
+app.use(setHeaders)
 
 connectDB();
 
@@ -203,8 +206,6 @@ app.post("/new-project", upload.single("textImage"), function (req, res) {
 app.use(require("./router/user"));
 app.use(require("./router/admin"));
 app.use(require("./module/Carousel"));
-
-app.use(setHeaders)
 
 const PORT = process.env.PORT || 5000;
 
