@@ -6,6 +6,7 @@ const sharp = require("sharp");
 const multer = require("multer");
 const Carousel = require("./module/Carousel");
 const Projects = require("./module/Projects");
+const { setHeaders } = require("./controller/middlewares/header");
 
 const app = express();
 
@@ -202,6 +203,8 @@ app.post("/new-project", upload.single("textImage"), function (req, res) {
 app.use(require("./router/user"));
 app.use(require("./router/admin"));
 app.use(require("./module/Carousel"));
+
+app.use(setHeaders)
 
 const PORT = process.env.PORT || 5000;
 
