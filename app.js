@@ -8,13 +8,14 @@ const Carousel = require("./module/Carousel");
 const Projects = require("./module/Projects");
 const { setHeaders } = require("./middlewares/header");
 const cors = require("cors")
+const Post = require("./module/PostModel");
 
 const app = express();
 
 app.use(cors());
-app.use(express.json())
-dotenv.config({ path: "./config/config.env" })
-app.use(setHeaders)
+app.use(express.json());
+dotenv.config({ path: "./config/config.env" });
+app.use(setHeaders);
 
 connectDB();
 
